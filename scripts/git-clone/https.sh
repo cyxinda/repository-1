@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e -x
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
         key="$1"
@@ -39,20 +39,12 @@ usage () {
         echo "  [-h|--help] Usage message"
 }
 
-if [[ $help ]]; then
-        usage
-        exit 0
-fi
-if [[ "$username" == "" || "$password" == "" || "$url" == "" ]]; then
-    echo "username or password or url is blank ."
-    exit 0
-fi
+function publicRepo(){
+ git clone $url
+}
 
-
-set -e -x
-
+function privateRepo(){
 /usr/bin/expect <<EOF
-
 set timeout -1
 spawn git clone $url
 
@@ -65,3 +57,22 @@ send "$password\r"
 
 expect eof
 EOF
+
+}
+
+if [[ $help ]]; then
+        usage
+        exit 0
+fi
+if [[   "$url" == "" ]]; then
+    echo " url is blank ."
+    exit 0
+fi
+
+if [[ "$username" == "" || "$password" == "" ]]; then
+    echo "down public repo : $url ."
+    publicRepo
+else
+     echo "down private repo : $url ."
+     privateRepo
+fi
