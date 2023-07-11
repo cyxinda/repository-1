@@ -5,7 +5,7 @@ while [[ $# -gt 0 ]]; do
         key="$1"
         case $key in
                 -u|--username)
-                userName="$2"
+                username="$2"
                 shift # past argument
                 shift # past value
                 ;;
@@ -14,8 +14,8 @@ while [[ $# -gt 0 ]]; do
                 shift # past argument
                 shift # past value
                 ;;
-                -a|--address)
-                address="$2"
+                -url|--url)
+                url="$2"
                 shift # past argument
                 shift # past value
                 ;;                
@@ -43,6 +43,12 @@ if [[ $help ]]; then
         usage
         exit 0
 fi
+if [[ "$username" == "" || "$password" == "" || "$url" == "" ]]; then
+    echo "username or password or url is blank ."
+    exit 0
+fi
+
+
 set -e -x
 
 /usr/bin/expect <<EOF
