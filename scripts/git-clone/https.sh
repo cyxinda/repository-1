@@ -14,7 +14,7 @@ while [[ $# -gt 0 ]]; do
                 shift # past argument
                 shift # past value
                 ;;
-                -url|--url)
+                -a|--url)
                 url="$2"
                 shift # past argument
                 shift # past value
@@ -35,7 +35,7 @@ usage () {
         echo "USAGE: $0 [--host $host] [--src $source-file-path] [--target $target-file-path] [--user $userName] [--passwd $password]"
         echo "  [-u|--username ] the username of the git repo"
         echo "  [-p|--password ] the token of the git repo ."
-        echo "  [-a|--address] the user name of the ssh remote login ."
+        echo "  [-a|--url] the user name of the ssh remote login ."
         echo "  [-h|--help] Usage message"
 }
 
@@ -54,7 +54,7 @@ set -e -x
 /usr/bin/expect <<EOF
 
 set timeout -1
-spawn git clone $address
+spawn git clone $url
 
 expect "Username*:"
 
