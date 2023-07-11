@@ -72,7 +72,9 @@ fi
 if [[ "$username" == "" || "$password" == "" ]]; then
     echo "down public repo : $url ."
     publicRepo
+    echo "Finished."
 else
      echo "down private repo : $url ."
      privateRepo
+     echo "Finished."
 fi
