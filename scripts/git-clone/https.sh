@@ -35,18 +35,18 @@ usage () {
         echo "USAGE: $0 [--host $host] [--src $source-file-path] [--target $target-file-path] [--user $userName] [--passwd $password]"
         echo "  [-u|--username ] the username of the git repo"
         echo "  [-p|--password ] the token of the git repo ."
-        echo "  [-a|--url] the user name of the ssh remote login ."
+        echo "  [-a|--url] the address of the git repo that can't be blank ."
         echo "  [-h|--help] Usage message"
 }
 
 function publicRepo(){
- git clone $url
+ git clone $url /data
 }
 
 function privateRepo(){
 /usr/bin/expect <<EOF
 set timeout -1
-spawn git clone $url
+spawn git clone $url  /data
 
 expect "Username*:"
 
