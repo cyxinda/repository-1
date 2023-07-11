@@ -38,15 +38,15 @@ usage () {
         echo "  [-a|--url] the address of the git repo that can't be blank ."
         echo "  [-h|--help] Usage message"
 }
-
+localDir=/data
 function publicRepo(){
- git clone $url /data
+ git clone $url $localDir
 }
 
 function privateRepo(){
 /usr/bin/expect <<EOF
 set timeout -1
-spawn git clone $url  /data
+spawn git clone $url  $localDir
 
 expect "Username*:"
 
@@ -75,6 +75,11 @@ if [[ "$username" == "" || "$password" == "" ]]; then
     echo "Finished."
 else
      echo "down private repo : $url ."
-     privateRepo
+     if [ "$(ls -A $localDir)" ]; then
+        echo "$localDir is not Empty"
+        exit 0
+     else
+       privateRepo
+     fi
      echo "Finished."
 fi
