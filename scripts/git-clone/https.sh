@@ -19,6 +19,11 @@ while [[ $# -gt 0 ]]; do
                 shift # past argument
                 shift # past value
                 ;;                
+                -d|--dir)
+                localDir="$2"
+                shift # past argument
+                shift # past value
+                ;;                
                 -h|--help)
                 help="true"
                 shift
@@ -36,11 +41,12 @@ usage () {
         echo "  [-u|--username ] the username of the git repo"
         echo "  [-p|--password ] the token of the git repo ."
         echo "  [-a|--url] the address of the git repo that can't be blank ."
+        echo "  [-d|--dir] the location of the download ."
         echo "  [-h|--help] Usage message"
 }
-localDir=/data
+localDir=${localDir:-"/data"}
 function publicRepo(){
- git clone $url $localDir
+  git clone $url $localDir
 }
 
 function privateRepo(){
