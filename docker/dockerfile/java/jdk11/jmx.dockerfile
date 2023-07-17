@@ -1,7 +1,8 @@
 FROM openjdk:11-jre
 ENV MX_MEM=512m
 ## 环境变量不能嵌套 MX_MEM这种就不能在docker build的时候进行设置
-ENV VM_ARG="-Xmn900m -Xms${MX_MEM:-1500m} -Xmx${MX_MEM:-1500m} -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m  "
+#ENV VM_ARG="-Xmn900m -Xms${MX_MEM:-1500m} -Xmx${MX_MEM:-1500m} -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m  "
+ENV VM_ARG="-Xms${MX_MEM:-1500m} -Xmx${MX_MEM:-1500m} -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m  "
 ENV OOM_ARG="-XX:+HeapDumpOnOutOfMemoryError "
 ENV GC_ARG=" -XX:HeapDumpPath=/data/logs/dump.hprof  -Xlog:gc:/data/logs/gc-%t.log"
 #ENV GC_ARG=" -Xlog:gc* -XX:HeapDumpPath=/data/logs/dump.hprof -Xloggc:/data/logs/gc-%t.log"
