@@ -157,25 +157,26 @@ under the License.
       <url>http://my.repository.com/repo/path</url>
     </mirror>
     -->
-    <!--    <mirror>
+    <mirror>
+      <id>nexus-knowdee</id>
+      <mirrorOf>central</mirrorOf>
+      <name>Nexus Knowdee</name>
+      <url>https://nexus.knowdee.com/nexus/repository/public/</url>
+    </mirror>
+    <!-- <mirror>
       <id>nexus-aliyun</id>
       <mirrorOf>central</mirrorOf>
       <name>Nexus aliyun</name>
       <url>http://maven.aliyun.com/nexus/content/groups/public</url>
     </mirror>
+
+    -->
     <mirror>
       <id>maven-default-http-blocker</id>
       <mirrorOf>external:http:*</mirrorOf>
       <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
       <url>http://0.0.0.0/</url>
       <blocked>true</blocked>
-            </mirror>
-    -->
-   <mirror>
-      <id>nexus-knowdee</id>
-      <mirrorOf>central</mirrorOf>
-      <name>Nexus Knowdee</name>
-      <url>https://nexus.knowdee.com/nexus/content/groups/public</url>
     </mirror>
   </mirrors>
 
